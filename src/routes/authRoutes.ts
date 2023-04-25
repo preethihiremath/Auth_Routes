@@ -1,10 +1,10 @@
 import express from 'express'
-import { changePassword, login, register ,getAllUsers} from '../controllers/authControllers';
+import { changePassword, login, register ,getAllUsers, logout} from '../controllers/authControllers';
 import { verifyAuthMiddleware } from '../middleware/authMiddleware';
 
 export const authRoutes = express.Router();
 
-authRoutes.get('/allUsers', getAllUsers)
 authRoutes.post('/register',register)
 authRoutes.post('/login',login)
+authRoutes.post('/logout',logout)
 authRoutes.post('/changepassword',verifyAuthMiddleware, changePassword )

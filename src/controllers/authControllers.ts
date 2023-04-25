@@ -84,3 +84,12 @@ export const changePassword = async (req:Request, res:Response) => {
         res.status(500).json({ message: error});
     }
 }
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    //TODO: Clear Token if stored in LocalStorage
+    res.status(200).json({ message: 'Logout successful' });
+  } catch (error:any) {
+    res.status(500).json({ message: 'Error Logging Out' });
+  }
+};
