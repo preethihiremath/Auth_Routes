@@ -4,7 +4,8 @@ import mongoose, {ConnectOptions} from 'mongoose'
 
 //Local Module Imports
 import { authRoutes } from './routes/authRoutes';
-import { getAllUsers } from './controllers/authControllers';
+import { getAllUsers } from './controllers/userControllers';
+import { userRoutes } from './routes/userRoutes';
 
 //Defined Variables
 const PORT = process.env.PORT || 3000;
@@ -14,11 +15,10 @@ const app = express();
 app.use(express.json());
 
 //Routes
-app.use('/allUsers', getAllUsers)
+app.use('/user', userRoutes)
 app.use('/auth', authRoutes);
 
-
-
+//DB
 mongoose.connect(CONNECTION_URL,{ 
     useNewUrlParser :  true,
     useUnifiedTopology: true,
@@ -29,7 +29,7 @@ mongoose.connect(CONNECTION_URL,{
         }
     ).catch(error=>console.log(error))
 
-
+//Listener
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })

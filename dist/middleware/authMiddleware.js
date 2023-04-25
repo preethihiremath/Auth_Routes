@@ -23,14 +23,14 @@ const verifyAuthMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 
             throw new Error('No token provided');
         }
         const decodedToken = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET_KEY || 'secret');
-        console.log(decodedToken);
+        // console.log(decodedToken);
         const userId = decodedToken.id;
-        console.log(userId);
+        // console.log(userId)
         const user = yield User_1.User.findById(userId);
         if (!user) {
             throw new Error('User not found');
         }
-        console.log(user);
+        // console.log(user)
         req.user = user;
         next();
     }
